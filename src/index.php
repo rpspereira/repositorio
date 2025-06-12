@@ -1,41 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ui ui ui, integração com GIThub concluida através de script terraform</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-
-<h2>ui ui ui, integração com GIThub concluida através de script terraform</h2>
-
 <?php
+// Ativar exibição de erros para debug
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Substitui pelo IP privado da tua VM MySQL
+$mysql_host = '10.0.1.4'; 
+$mysql_user = 'mysqladmin';
+$mysql_pass = '@pass123!';
+$mysql_db   = 'motos';
+
+// Tenta conectar ao MySQL
+$conn = new mysqli($mysql_host, $mysql_user, $mysql_pass, $mysql_db);
+if ($conn->connect_error) {
+    die("Erro na ligação à base de dados: " . $conn->connect_error);
+}
+
 // Mensagem de sucesso ou erro
 if (isset($message)) {
     echo "<p>$message</p>";
 }
-
-// Fazer a conexão ao MySQL
-#####################################################################
-$conn = new mysqli('dBaser', 'mysqluser', '@pass123!', 'mysql');
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-####################################################################
 
 // Criar um novo registo
 if (isset($_POST['submit_create'])) {
@@ -80,7 +64,37 @@ if (isset($_POST['submit_update'])) {
 // Query a todos os registros da BD
 $sql = "SELECT * FROM motos";
 $result = $conn->query($sql);
+?>
 
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Dados Motos - Projeto 7</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Base de Dados Motos - Projeto 7</h2>
+
+<?php
+if (isset($message)) {
+    echo "<p>$message</p>";
+}
 ?>
 
 <!-- Formulário para criar um novo registo -->
@@ -127,7 +141,7 @@ if (isset($_POST['submit_edit'])) {
 ?>
 
 <!-- Tabela para exibir registos -->
-<h3>Registros</h3>
+<h3>Registos</h3>
 <table>
     <thead>
         <tr>
@@ -141,7 +155,7 @@ if (isset($_POST['submit_edit'])) {
     </thead>
     <tbody>
         <?php
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['id'] . "</td>";

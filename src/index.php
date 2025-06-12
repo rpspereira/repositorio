@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<h2>Base de Dados Motos - Projeto 7</h2>
+<h2>ui ui ui, integração com GIThub concluida através de script terraform</h2>
 
 <?php
 // Mensagem de sucesso ou erro
@@ -31,7 +31,7 @@ if (isset($message)) {
 
 // Fazer a conexão ao MySQL
 #####################################################################
-$conn = new mysqli('DBaser', 'mysqluser', '1qazxsw23edC', 'mysql');
+$conn = new mysqli('DBaser', 'mysqluser', '@pass123!', 'mysql');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

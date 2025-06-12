@@ -31,7 +31,7 @@ if (isset($message)) {
 
 // Fazer a conexão ao MySQL
 #####################################################################
-$conn = new mysqli('DBaser', 'mysqluser', '@pass123!', 'mysql');
+$conn = new mysqli('dBaser', 'mysqluser', '@pass123!', 'mysql');
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

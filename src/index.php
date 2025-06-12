@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de Dados Motos - Projeto 7</title>
+    <title>ui ui ui, integração com GIThub concluida através de script terraform</title>
     <style>
         table {
             border-collapse: collapse;
